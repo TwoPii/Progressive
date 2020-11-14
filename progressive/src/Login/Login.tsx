@@ -1,15 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Login.css'
 import axios from 'axios'
+import {Redirect} from 'react-router-dom';
 
 
-interface ILoginProperties {
-  obtainToken: (token: string) => void;
-}
 
-export class Login extends Component<ILoginProperties> {
+
+
+export class Login extends React.Component<{response: any}, {redirect: boolean}> {
+
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      redirect: false
+    }
+  }
+
     render() {
-        return (
+        if( this.state.redirect) return <Redirect push to="/dashboard"></Redirect>
+        else return (
             <div className="login-box">
                 <input id="user-name" type="text" />
                 <input id="password" type="password" />
@@ -37,11 +46,20 @@ export class Login extends Component<ILoginProperties> {
           }
         }
       );
-      console.log(response);
-      if (response.status !== 200 || response.data.error) console.log('ERROR');
+      if (response.status !== 200 || response.data.error) this.props.response(false);
       else {
         let token = response.data.token;
-        this.props.obtainToken(token);
+        this.setCookie(token, 10);
+        this.props.response(true);
+        this.setState({redirect: true});
+
       }
+    }
+
+    private setCookie(token: string, days: number) {
+      var d = new Date();
+      d.setTime(d.getTime() + (days*24*3600*1000));
+      var expires = "expires=" + d.toUTCString();
+      document.cookie = "accessToken=" + token + ";" + expires + "path=/";
     }
 }
