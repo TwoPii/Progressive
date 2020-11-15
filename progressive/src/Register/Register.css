@@ -1,4 +1,4 @@
-.login-box {
+.register-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,7 +11,7 @@ input {
     margin-top: 10px;
 }
 
-.login {
+.register {
     margin-top: 10px;
     background-color: #174c80;
     color: #00d1b2;
@@ -20,4 +20,10 @@ input {
 
 .register:hover {
     background-color: #173c80;
+}
+
+.message {
+    margin-top: 10px;
+    font-size: 16px;
+    background-color: white;
 }

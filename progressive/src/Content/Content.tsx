@@ -3,11 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 import { Dashboard } from '../Dashboard/Dashboard';
 import { Login } from '../Login/Login';
 import { Logout } from '../Logout/Logout';
+import { Register } from '../Register/Register';
+import './Home.css';
 
 export class Content extends Component<{change: any}, { logged: boolean}> {
-    constructor (props: any) {
-        super(props);
-    }
     render() {
         return (
             <div>
@@ -21,8 +20,11 @@ export class Content extends Component<{change: any}, { logged: boolean}> {
                     <Route path="/logout">
                         <Logout response={(val: boolean) => this.authenticated(val)}></Logout>
                     </Route>
+                    <Route path="/register">
+                        <Register></Register>
+                    </Route>
                     <Route path="/">
-                        <div>Home</div>
+                        <div className="home">Welcome to Heroes RPG</div>
                     </Route>
                 </Switch>
             </div>

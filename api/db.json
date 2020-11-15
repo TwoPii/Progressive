@@ -1,12 +1,43 @@
 {
+  "lastUserId": 4,
   "users": [
     {
       "username": "genisbosch",
-      "password": "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"
+      "password": "7110eda4d09e062aa5e4a390b0a572ac0d2c0220",
+      "userId": 1
     },
     {
       "username": "genisbosch2",
-      "password": "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"
+      "password": "7110eda4d09e062aa5e4a390b0a572ac0d2c0220",
+      "userId": 2
+    },
+    {
+      "username": "genisboschx",
+      "password": "7110eda4d09e062aa5e4a390b0a572ac0d2c0220",
+      "userId": 4
+    }
+  ],
+  "heroes": [
+    {
+      "userId": 1,
+      "name": "Sam",
+      "attack": 1,
+      "defense": 1,
+      "hp": 100
+    },
+    {
+      "userId": 2,
+      "name": "Gandalf",
+      "attack": 1,
+      "defense": 1,
+      "hp": 100
+    },
+    {
+      "userId": 4,
+      "name": "Legolas",
+      "attack": 1,
+      "defense": 1,
+      "hp": 100
     }
   ]
 }

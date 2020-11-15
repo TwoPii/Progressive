@@ -22,6 +22,7 @@ export default class App extends React.Component<{},{authenticated: boolean}> {
                         {this.state.authenticated && <span className="navbar-item"><NavLink to="/dashboard">Dashboard</NavLink></span>}
                         {this.state.authenticated && <span className="navbar-item"><NavLink to="/logout">Logout</NavLink></span>}
                         {!this.state.authenticated && <span className="navbar-item"><NavLink to="/">Home</NavLink></span>}
+                        {!this.state.authenticated && <span className="navbar-item"><NavLink to="/register">Register</NavLink></span>}
                         {!this.state.authenticated && <span className="navbar-item"><NavLink to="/login">Login</NavLink></span>}
                     </div>
                 </nav>

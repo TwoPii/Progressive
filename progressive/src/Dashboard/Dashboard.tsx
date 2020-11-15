@@ -1,32 +1,61 @@
 import React from 'react';
 import axios from 'axios'
+import './Dashboard.css';
 
-export class Dashboard extends React.Component<{}, {info: any}> {
+export class Dashboard extends React.Component<{}, {info: any, created: boolean}> {
 
   constructor(props: any) {
     super(props)
     this.state = {
-        info: []
+        info: [],
+        created: false
     };
   }
 
     render() {
-        return (
-            <div>
-                {this.state.info && this.state.info.map((u: any)=> {
-                    return (<div>
-                        <div>{u.id}</div>
-                        <div>{u.name}</div>
-                    </div>);
-                })}
-                <div onClick={() => this.loadUsers()}>
-                    Request info
-                </div>       
-            </div>
+        if( this.state.created )return (
+          <div className="hero">
+            <div className="property">Name: {this.state.info.name}</div>
+            <div className="property">Attack: {this.state.info.attack}</div>
+            <div className="property">Defense: {this.state.info.defense}</div>
+            <div className="property">HP: {this.state.info.hp}</div>
+          </div>     
         );
+        else return (
+          <div>
+            <input id="hero-name" type="text"></input>
+            <div onClick={() => this.createHero()}>Create Hero</div>
+          </div>
+        )
     }
 
-    private async loadUsers() {
+    public componentDidMount() {
+      this.getHero();
+    }
+
+    private async createHero() {
+      let token = this.getCookie('accessToken');
+      let response = await axios.post(
+        'http://localhost:5000/create',
+        {
+          name: (document.getElementById('hero-name') as HTMLInputElement).value
+        },
+        {
+          headers: {
+            'Access-Control-Allow-Origin' : '*',
+            'Content-Type': 'application/json',
+            'access-token': token
+          } 
+        }
+      );
+      if (response.status !== 200 || response.data.error) console.log("ERROR");
+      else {
+        this.setState({created: true});
+        this.getHero();
+      }
+    }
+
+    private async getHero() {
       let token = this.getCookie('accessToken');
       let response = await axios.get(
         'http://localhost:5000/info',
@@ -41,8 +70,8 @@ export class Dashboard extends React.Component<{}, {info: any}> {
       if (response.status !== 200 || response.data.error) console.log("ERROR");
       else {
         let info = response.data;
-        debugger;
-        this.setState({info})
+        let created = info !== "";
+        this.setState({info, created})
       }
     }
 

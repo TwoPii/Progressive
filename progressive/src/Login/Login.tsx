@@ -20,9 +20,9 @@ export class Login extends React.Component<{response: any}, {redirect: boolean}>
         if( this.state.redirect) return <Redirect push to="/dashboard"></Redirect>
         else return (
             <div className="login-box">
-                <input id="user-name" type="text" />
-                <input id="password" type="password" />
-                <div id="button" onClick={() => this.submit()}>
+                <input id="user-name" type="text" placeholder="Username" />
+                <input id="password" type="password" placeholder="Password"/>
+                <div id="button" className="login" onClick={() => this.submit()}>
                   LogIn
                 </div>
             </div>
