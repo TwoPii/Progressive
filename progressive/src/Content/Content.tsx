@@ -24,7 +24,7 @@ export class Content extends Component<{change: any}, { logged: boolean}> {
                         <Register></Register>
                     </Route>
                     <Route path="/">
-                        <div className="home">Welcome to Chess</div>
+                        <div className="home">Welcome to Progressive</div>
                     </Route>
                 </Switch>
             </div>

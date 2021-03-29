@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter, NavLink } from 'react-router-dom';
 import './App.css';
 import { Content } from './Content/Content';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 
 export default class App extends React.Component<{},{authenticated: boolean}> {
 
@@ -17,13 +20,16 @@ export default class App extends React.Component<{},{authenticated: boolean}> {
       <BrowserRouter>
         <div className="topheader">
             <header className="container">
-                <nav className="navbar">
-                    <div className="navbar-brand">
-                        {this.state.authenticated && <span className="navbar-item"><NavLink to="/dashboard">Dashboard</NavLink></span>}
-                        {this.state.authenticated && <span className="navbar-item"><NavLink to="/logout">Logout</NavLink></span>}
-                        {!this.state.authenticated && <span className="navbar-item"><NavLink to="/">Home</NavLink></span>}
-                        {!this.state.authenticated && <span className="navbar-item"><NavLink to="/register">Register</NavLink></span>}
-                        {!this.state.authenticated && <span className="navbar-item"><NavLink to="/login">Login</NavLink></span>}
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <li className="nav-item">{this.state.authenticated && <NavLink className="navbar-brand" to="/dashboard">Progressive</NavLink>}</li>
+                    <li className="nav-item">{this.state.authenticated && <NavLink className="nav-link" to="/logout">Logout</NavLink>}</li>
+                    <li className="nav-item">{!this.state.authenticated && <NavLink className="navbar-brand" to="/">Home</NavLink>}</li>
+                    <li className="nav-item">{!this.state.authenticated && <NavLink className="nav-link" to="/register">Register</NavLink>}</li>
+                    <li className="nav-item">{!this.state.authenticated && <NavLink className="nav-link" to="/login">Login</NavLink>}</li>
                     </div>
                 </nav>
             </header>
